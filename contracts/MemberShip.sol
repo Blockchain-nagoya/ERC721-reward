@@ -17,7 +17,7 @@ contract MemberShip {
     _;
   }
 
-  function join() public idToAddress {
+  function issueMembership() public idToAddress {
     if( MemberList.length < 100 ) {
       uint256 _id = MemberList.length;
     } else {
