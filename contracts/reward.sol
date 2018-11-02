@@ -5,6 +5,6 @@ import "./Sponsor.sol";
 
 contract reward is Mint, Sponsor {
 
-  constructor() public ERC721Full("Blockchain-Nagoya", "BCN") {}
+  constructor(string _name, string _symbol) public ERC721Full(_name, _symbol) {}
 
 }
