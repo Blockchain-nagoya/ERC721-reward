@@ -1,5 +1,7 @@
 let Contracts = artifacts.require("./reward.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Contracts);
+  let name = "TestToken";
+  let symbol = "TST";
+  deployer.deploy(Contracts, name, symbol);
 };
