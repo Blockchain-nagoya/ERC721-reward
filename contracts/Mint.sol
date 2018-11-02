@@ -1,9 +1,10 @@
 pragma solidity 0.4.24;
 
 import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
+import "openzeppelin-solidity/contracts/token/ERC721/ERC721MetadataMintable.sol";
 import "./List.sol";
 
-contract Mint is List, ERC721Full {
+contract Mint is List, ERC721Full, ERC721MetadataMintable {
 
   // address => chapter => bool
   mapping (address => mapping(uint256 => bool)) private chapterToAddress;
@@ -17,7 +18,7 @@ contract Mint is List, ERC721Full {
   // _setTokenURI(tokenId, tokenURI)
 
 
-  function mint() public checkToken {
+  function mint(string _URI) public checkToken {
     require(RewardList[RewardList.length - 1].sale == true);
 
     uint256 _index = RewardList.length - 1;
@@ -28,14 +29,14 @@ contract Mint is List, ERC721Full {
       uint256 _TokenId = tokenId();
       RewardList[_index].issued++;
       chapterToAddress[msg.sender][_chapter] = true;
-      _mint(msg.sender, _TokenId);
+      mintWithTokenURI(msg.sender, _TokenId, _URI);
 
     } else {
       RewardList[_index].sale = false;
     }
   }
 
-  function premiumMint() payable public checkToken {
+  function premiumMint(string _URI) payable public checkToken {
     require(
       RewardList[RewardList.length - 1].sale == true &&
       RewardList[RewardList.length -1].p_issued < RewardList[RewardList.length -1].premium &&
@@ -52,7 +53,7 @@ contract Mint is List, ERC721Full {
       RewardList[_index].issued++;
       chapterToAddress[msg.sender][_chapter] = true;
   
-      _mint(msg.sender, _TokenId);
+      mintWithTokenURI(msg.sender, _TokenId, _URI);
 
     } else {
       msg.sender.transfer(msg.value);
