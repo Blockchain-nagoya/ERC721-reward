@@ -1,34 +1,11 @@
 pragma solidity 0.4.24;
 
+import "openzeppelin-solidity/contracts/token/ERC721/ERC721Metadata.sol";
 
-contract Meta {
+contract Meta is ERC721Metadata {
 
-  /*
-    {
-      "title": "gift",
-      "type": "object",
-      "properties": {
-        "class": {
-          "type": "string",
-          "description": "Common",
-        },
-        "name": {
-          "type": "string",
-          "description": "Identifies the asset to which this NFT represents",
-        },
-        "description" : {
-          "type": "string",
-          "description": "Describes the asset to which this NFT represents"
-        },
-        "image": {
-          "type": "string",
-          "description": "URL",
-        }
-      }
-    }
-  */
-
-  function setMetaData(string _meta) public {
-    
+  function changeURI(uint256 _tokenId, string _URI) public {
+    _setTokenURI(_tokenId, _URI);
   }
+  
 }
