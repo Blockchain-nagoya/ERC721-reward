@@ -17,6 +17,8 @@ contract List is Ownable {
 
   Reward[] internal RewardList;
 
+  event LogSetToken(address _owner, uint256 chapter, uint256 totalSupply, uint256 premium, string URI);
+
   function setToken(uint256 _totalSupply, uint256 _premium, string _URI) public onlyOwner {
 
     RewardList.push(Reward(
@@ -30,6 +32,7 @@ contract List is Ownable {
       true
     ));
 
+    emit LogSetToken(msg.sender, uint256(RewardList.length), _totalSupply, _premium, _URI);
   }
 
   function viewToken(uint _index) public view returns(uint256, uint256, uint256, uint256, uint256, uint256, string) {
