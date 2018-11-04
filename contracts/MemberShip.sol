@@ -30,6 +30,9 @@ contract MemberShip {
     _mint(msg.sender, _id);
   }
 
+  function viewMemberShip(address _addr) public view return(uint256) {
+    return idToAddress[_addr].id;
+  }
 
 
 }
