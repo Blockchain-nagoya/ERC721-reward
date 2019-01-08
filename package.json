@@ -1,0 +1,12 @@
+{
+  "name": "Membership",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Blockchain-nagoya/ERC721-reward.git",
+  "author": "blockchain-nagoya",
+  "license": "MIT",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.1.1",
+    "truffle-hdwallet-provider": "^1.0.2"
+  }
+}
